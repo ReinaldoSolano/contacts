@@ -27,10 +27,7 @@ pipeline {
         }
 
         stage('Deploy k8s') {
-            agent {
-                    kubernetes {
-                        cloud 'kubernetes'
-                    }
+            agent kubernetes 
                     enviroment {
                         tag_version = "${env.BUILD_ID}"
                     }
