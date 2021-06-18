@@ -1,21 +1,21 @@
-# Start with a base image containing Java runtime
 #FROM openjdk:8-jdk-alpine
-
-# Add Maintainer Info
-#LABEL maintainer="reinaldo.solano@antikytera.com"
-
-
-# Add a volume pointing to /tmp
 #VOLUME /tmp
+#COPY contacts/target/*.jar app.jar
+#ENTRYPOINT ["java","-jar","/app.jar"]
+FROM maven:3.6.2-jdk-8-slim AS MAVEN_BUILD
 
-#ADD contacts/target/contacts.jar app.jar
-# Make port 8080 available to the world outside this container
-#EXPOSE 8080
+COPY pom.xml /build/
+COPY src /build/src/
 
-#RUN bash -c 'touch /app.jar'
-#ENTRYPOINT ["java", "-jar","/app.jar"]
-FROM openjdk:8-jdk-alpine
-VOLUME /tmp
-COPY contacts/target/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+WORKDIR /build/
+
+RUN mvn -Dmaven.test.skip=true package -Ptest # This line does not work properly
+
+FROM openjdk:8-jre
+
+WORKDIR /app
+
+COPY --from=MAVEN_BUILD /build/target/contacts.jar /app/
+
+ENTRYPOINT ["java", "-jar", "contacts.jar"]
 
