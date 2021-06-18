@@ -8,11 +8,10 @@ COPY pom.xml /build/
 COPY src /build/src/
 
 WORKDIR /build/
-
-RUN mvn clean package
+RUN ["mvn", "clean"]
+RUN ["mvn", "install", "-Dmaven.test.skip=true"]
 
 FROM openjdk:8-jre
-
 WORKDIR /app
 
 COPY --from=MAVEN_BUILD /build/target/contacts.jar /app/
