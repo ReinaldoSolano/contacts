@@ -9,7 +9,7 @@ COPY src /build/src/
 
 WORKDIR /build/
 
-RUN mvn -Dmaven.test.skip=true package -Ptest # This line does not work properly
+#RUN mvn -Dmaven.test.skip=true package -Ptest # This line does not work properly
 
 FROM openjdk:8-jre
 
