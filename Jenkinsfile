@@ -25,7 +25,7 @@ pipeline {
                 }
             }
         }
-        stage('Depoly Kubernetes') {
+        stage('Deploy Kubernetes') {
         	agent {
         		kubernetes {
         			cloud 'kubernetes'
@@ -43,5 +43,4 @@ pipeline {
         	}
         }
     }
-
 }
