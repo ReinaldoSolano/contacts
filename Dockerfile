@@ -1,17 +1,21 @@
 # Start with a base image containing Java runtime
-FROM openjdk:8-jdk-alpine
+#FROM openjdk:8-jdk-alpine
 
 # Add Maintainer Info
-LABEL maintainer="reinaldo.solano@antikytera.com"
+#LABEL maintainer="reinaldo.solano@antikytera.com"
 
 
 # Add a volume pointing to /tmp
-VOLUME /tmp
+#VOLUME /tmp
 
-ADD contacts/target/contacts.jar app.jar
+#ADD contacts/target/contacts.jar app.jar
 # Make port 8080 available to the world outside this container
-EXPOSE 8080
+#EXPOSE 8080
 
-RUN bash -c 'touch /app.jar'
-ENTRYPOINT ["java", "-jar","/app.jar"]
+#RUN bash -c 'touch /app.jar'
+#ENTRYPOINT ["java", "-jar","/app.jar"]
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+COPY target/*.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
 
