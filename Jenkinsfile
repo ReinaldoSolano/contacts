@@ -32,6 +32,9 @@ pipeline {
                     cloud 'kubernetes'
                 }
             }
+            steps{
+            	sh 'cat ./k8s/api/deployment.yaml'
+            }
         }
     }
 }
