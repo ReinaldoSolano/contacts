@@ -26,17 +26,15 @@ pipeline {
             }
         }
 
-        stage('Deploy k8s') {
-        	enviroment {
-                	tag_version = "${env.BUILD_ID}"
-                }
- 
+        stage('Deploy kubernetes') {
             agent {
                 kubernetes {
                     cloud 'kubernetes'
                 }
             }
-            
+        	enviroment {
+                tag_version = "${env.BUILD_ID}"
+            }
             steps {
             	sh 'sed -i "s/{{tag}}/$tag_version/g" ./k8s/api/deployment.yaml'
             	sh 'cat ./k8s/api/deployment.yaml'
