@@ -20,4 +20,9 @@ public class ContactsController {
 	public List<ContactsVO> getAll() {
 		return service.getAll();
 	}
+	
+	@GetMapping("/test")
+	public String test() {
+		return "testando a pipeline";
+	}
 }
