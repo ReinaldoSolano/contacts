@@ -30,9 +30,6 @@ pipeline {
             agent {
                 kubernetes {
                     cloud 'kubernetes'
-                    enviroment {
-                    	tag_version = "${env.BUILD_ID}"
-                    }
                 }
             }
             
