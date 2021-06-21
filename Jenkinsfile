@@ -28,8 +28,13 @@ pipeline {
         }
 
         stage('Deploy k8s') {
+            agent {
+                kubernetes {
+                    cloud 'kubernetes'
+                }
+            }
             steps {
-                echo 'deploy k8s Lipi'
+                kubernetesDeploy(config: '**/k8s/**'), kubeconfig: 'kubeconfig'
             }
         }
 
