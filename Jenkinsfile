@@ -37,8 +37,7 @@ pipeline {
                 tag_version = "${env.BUILD_ID}"
             }
             steps {
-                sh 'sed -i "s/{{tag}}/$tag_version/g" ./k8s/api/deployment.yaml'
-            	sh 'cat ./k8s/api/deployment.yaml'
+                
                 kubernetesDeploy(configs: '**/k8s/**', kubeconfigId: 'kubeconfig')
             }
         }
