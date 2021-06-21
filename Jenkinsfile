@@ -27,7 +27,7 @@ pipeline {
             }
         }
 
-        stage('Deploy k8s') {
+        stage('k8s - deploy') {
             agent {
                 kubernetes {
                     cloud 'kubernetes'
