@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: contacts
-          image: rssystem/contacts:{{tag_version}}
+          image: rssystem/contacts:{{tag}}
           resources:
             limits:
               memory: "256Mi"
