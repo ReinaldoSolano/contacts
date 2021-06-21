@@ -33,6 +33,9 @@ pipeline {
                     cloud 'kubernetes'
                 }
             }
+            enviroment{
+                tag_version = "${env.BUILD_ID}"
+            }
             steps {
                 kubernetesDeploy(configs: '**/k8s/**', kubeconfigId: 'kubeconfig')
             }
