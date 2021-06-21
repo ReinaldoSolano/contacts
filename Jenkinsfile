@@ -15,6 +15,7 @@ pipeline {
                 }
             }
         }
+        
         stage('Push Image') {
             steps {
                 script {
@@ -23,6 +24,12 @@ pipeline {
                     dockerapp.push("${env.BUILD_ID}")
                     }
                 }
+            }
+        }
+
+        stage('Deploy k8s') {
+            steps {
+                echo 'deploy k8s Lipi'
             }
         }
 
