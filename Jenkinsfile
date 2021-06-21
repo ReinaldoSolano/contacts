@@ -37,7 +37,7 @@ pipeline {
                 tag_version = "${env.BUILD_ID}"
             }
             steps {
-                
+                echo 'conectado ao k8s'
                 kubernetesDeploy(configs: '**/k8s/**', kubeconfigId: 'kubeconfig')
             }
         }
