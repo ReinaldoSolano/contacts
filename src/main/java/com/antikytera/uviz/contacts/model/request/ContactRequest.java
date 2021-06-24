@@ -1,4 +1,4 @@
-package com.antikytera.uviz.contacts.model;
+package com.antikytera.uviz.contacts.model.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-public class Contact {
+public class ContactRequest {
 	private String name;
 	private String email;
 	private String phone;
-	private String formattedPhone;
+
 }

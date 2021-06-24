@@ -14,9 +14,27 @@ spec:
       containers:
         - name: contacts
           image: rssystem/contacts:{{tag}}
+          ports:
+            - containerPort: 80
+              name: http
+            - containerPort: 443
+              name: https
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: api-configmap
+          env:
+          - name: Mongo__User
+            valueFrom:
+              secretKeyRef:
+                  key: MONGO_INITDB_ROOT_USERNAME
+                  name: mongodb-secret
+          - name: Mongo__Password
+            valueFrom:
+              secretKeyRef:
+                key: MONGO_INITDB_ROOT_PASSWORD
+                name: mongodb-secret
           resources:
             limits:
               memory: "256Mi"
               cpu: "250"
-          ports:
-            - containerPort: 80
